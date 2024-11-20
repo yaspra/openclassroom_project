@@ -1,0 +1,25 @@
+HTML is built in a tree-like structure called the Document Object Model, or DOM. 
+The DOM is made up of a bunch of different tags that can be nested into each other. 
+Different tags can represent each part of an HTML page, and most elements have an opening and closing one.
+
+An opening tag looks like: 
+ <element_name>  and a closing tag usually has the same  element_name  just with a  /  in the front, e.g.,  </element_name> . 
+ For example, every web page has the  html  opening tag,  <html>  , and the closing tag,  </html>. 
+ All the information you want in that element needs to be between the opening and closing tags. 
+
+ types of tags:
+
+<p>  for a paragraph element. 
+<b>  for a bold element. 
+<a>  for a hyperlink.
+<div>  a new section or division.
+
+The HTML tag represents the top level of the tree in the DOM and the rest of the tags are like children of the corresponding parent tags.
+
+A couple of important things to know about HTML tags are class and id attributes, which are ways to give different HTML elements identifiers. 
+You'll see a series of tags, such as  <p>  or  <h1>  , each with text inside.
+
+The tag is a set of greater-than or less-than signs, with an element name inside that will determine how the text within the "opening" and "closing" tags will be displayed.
+
+Tags like  <h1>  ,  <h2>  , and  <h3>  will be header elements (that's what the "h" stands for), and the  <p>  tag is a paragraph element. 
+The full group consisting of one "opening" tag, the content, and one "closing" tag is called an element. 
