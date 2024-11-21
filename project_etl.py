@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 This Script 
 is the main python script to extract, load and create the output for the website "Books To Scrape". 
@@ -83,3 +84,23 @@ with open('title_list.csv','w',newline='') as csvfile:
        row = [all_titles[p]]
        writer.writerow(row)
         
+=======
+"""
+This Script is the main python script to extract, load and create the output for the website "Books To Scrape". 
+
+"""
+"""
+#step1 :Install requests and beautiful soup.
+
+install requests
+install bs4
+"""
+#step2 : Using the pip -request read the page "books to scrape. Print it to validate
+
+import requests
+url = "https://books.toscrape.com"
+page = requests.get(url)
+print(page.content)
+
+
+>>>>>>> 3462b26894527d2998ffb95265779720e785ac63
