@@ -63,5 +63,5 @@ import csv
 with open ('one_book_details.csv','w',newline='') as csvfile:
     writer = csv.writer(csvfile,delimiter = ',')
     writer.writerow(headers)
-    row = [book_url,upc,title,price_exclu_tax,price_inclu_tax,quantity_available,"product_description",sub_category,rating,image_source]
+    row = [book_url,upc,title,price_exclu_tax,price_inclu_tax,quantity_available,product_description,sub_category,rating,image_source]
     writer.writerow(row)
