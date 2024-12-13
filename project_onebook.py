@@ -42,7 +42,8 @@ if p_tag:
         rating = r_list[1]  
 im_tag = booksoup.find('img')
 if im_tag:
-    image_source = im_tag.get('src')        
+    img_src = im_tag.get('src')   
+    image_source = urljoin(book_url,img_src)     
 print("Product Page URL =",book_url)
 print("UPC = ",upc)
 print("Book_Title=",title)
