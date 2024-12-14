@@ -18,15 +18,15 @@ booksoup = BeautifulSoup(wpage.content,'html.parser')
 for title_tag in booksoup.find('h1'):
         if title_tag:
          title = title_tag.text.strip() 
-upc = booksoup.find('th',text = 'UPC').find_next_sibling('td').text
-price_exclu_tax = booksoup.find('th',text = 'Price (excl. tax)').find_next_sibling('td').text 
-price_inclu_tax = booksoup.find('th',text = 'Price (incl. tax)').find_next_sibling('td').text
-tax_added = booksoup.find('th',text= 'Tax').find_next_sibling('td').text
-review_count = booksoup.find('th',text= 'Number of reviews').find_next_sibling('td').text
+upc = booksoup.find('th',string = 'UPC').find_next_sibling('td').text
+price_exclu_tax = booksoup.find('th',string = 'Price (excl. tax)').find_next_sibling('td').text 
+price_inclu_tax = booksoup.find('th',string = 'Price (incl. tax)').find_next_sibling('td').text
+tax_added = booksoup.find('th',string = 'Tax').find_next_sibling('td').text
+review_count = booksoup.find('th',string = 'Number of reviews').find_next_sibling('td').text
 meta_tag = booksoup.find('meta',attrs={'name':'description'})
 if meta_tag:
     product_description = meta_tag.get('content','').strip()
-quantity_available = booksoup.find('th',text = 'Availability').find_next_sibling('td').text
+quantity_available = booksoup.find('th',string = 'Availability').find_next_sibling('td').text
 breadcrumb = booksoup.find('ul',class_ = 'breadcrumb')
 if breadcrumb:
     li_tag = breadcrumb.find_all('li')
@@ -44,20 +44,6 @@ im_tag = booksoup.find('img')
 if im_tag:
     img_src = im_tag.get('src')   
     image_source = urljoin(book_url,img_src)     
-print("Product Page URL =",book_url)
-print("UPC = ",upc)
-print("Book_Title=",title)
-print("price excluding tax =",price_exclu_tax)
-print("price_including_tax =",price_inclu_tax)
-print("Tax Added =",tax_added)
-print("review_count =",review_count)
-print("Quantity_available=",quantity_available)
-print("product_description =",product_description)
-print("category =", category)
-print("subcategory=",sub_category)
-print("rating=",rating)
-print("image_source =",image_source)
-
 headers = ['Product_Page_Url','Universal_ Product_Code (UPC)','Book_Title','Price_Including_Tax','Price_Excluding_Tax','Quantity_Available','Product_Description','Category','Review_Rating','Image_Url']
 
 import csv
