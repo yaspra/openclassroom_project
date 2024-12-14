@@ -9,14 +9,21 @@
 
 ## Clone the repository
 1. In the directory of your prefrence clone the repository in your environment -->`git clone https://github.com/yaspra/openclassroom_project.git`
-1. If planning to use virtual environment(in the same directory): Create your virtual environment. -->`python -m venv [name you intend to give your virtual environment]
-1. Activate virtual environment. You can activate your virtual environment. --> For CMD -->`env/Scripts/activate.bat` For Powershel --> `env/Scripts/Activate.ps1`
-1. You use the refer the documentation in the references below for detailed instructions
+1. using the pip installation instructions below update pip and install packages
+1. using the run instructions below , run required python scripts
+
+### For Virtual Environment
+1. In the desired folder created download virual environment using command `python -m venv [name you intend to give your virtual environment]`
+1. Activate virtual environment. You can activate your virtual environment. --> For CMD -->`.\Scripts\activate` For Powershel --> `env/Scripts/Activate.ps1`
+1. In this activated virtual environment, clone the repository using command --> ``git clone https://github.com/yaspra/openclassroom_project.git`
+1. using the pip installation instructions below update pip and install packages 
+1. using the run instructions below execute any required script.
 
 ## pip installation
 1. Refer to the requirements.txt cloned from repository.Check if you have them installed.
 1. If not, install all pip dependcies required using requirements.txt using the command --> `pip install -r requirements.txt`
 1. you can check pip versions by --> `pip --version`
+1. upgrade pip `python.exe -m pip install --upgrade pip'
 1. Ensure you have uninterrupted web access as the scripts need to refer to the webpage during execution.
 
 ## RUN INSTRUCTIONS
