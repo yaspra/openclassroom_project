@@ -1,3 +1,6 @@
 reports/
 images/
 Additional_Study_Material/
+*.csv
+*.pdf
+env/

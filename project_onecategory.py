@@ -21,7 +21,6 @@ bs4soup = BeautifulSoup(wpage.content,'html.parser')
 
 #step 1.b - print all the sub categories
 side_cate = bs4soup.select('.side_categories ul.nav-list ul li a')
-print("side categories list is as below:")
 for cat in side_cate:
     print(cat.get_text(strip = True))
     
@@ -48,14 +47,12 @@ else:
 ##################################################################################################################################################################################################################
 #step 2.a
 product_pag_url = urljoin(booksite_url,category_url)    
-#print(f"total_page_url for {category_name} = ",product_pag_url)
 bpage = requests.get(product_pag_url)  
 pagesoup = BeautifulSoup(bpage.content,'html.parser')
 
 #step2.b count number of pages in this category
 def get_total_page_cnt(url):
     page_cnt = pagesoup.find('ul',class_ = 'pager')
- #   print(page_cnt)    
     if page_cnt:
         current_page = page_cnt.find('li',class_='current')
         if current_page:
@@ -65,16 +62,13 @@ def get_total_page_cnt(url):
                 total_pages = int(parts[-1])
             return total_pages
     return 1
-total_pages_count = get_total_page_cnt(product_pag_url)  
-print(f"product_page for {category_name} =" , product_pag_url)
-print(f"total number of pages in {category_name}=",total_pages_count)   
+total_pages_count = get_total_page_cnt(product_pag_url)   
 
 def get_page_url(base_url,page_number):
     if page_number == 1:
         return base_url
     else:
-        return f'{base_url}/catalogue/page-{page_number}.html'
-print('page_number_23',get_page_url(booksite_url,40))   
+        return base_url.replace("index.html",f"page-{page_number}.html")
 
 ##################################################################################################################################################################################################################    
 #                                              STEP 3
@@ -101,23 +95,16 @@ bk_num_in_pg = []
 #2.b - initiate the loop for the page =1 to the total number of pages per step #2.b
 p_num = 1
 while p_num <= total_pages_count:
-    print("page_number = ",p_num)
     url_for_page= get_page_url(product_pag_url,p_num)
-    print(f"Page iteration = {p_num} URL: {url_for_page}")
     ipage = requests.get(url_for_page)
     soup = BeautifulSoup(ipage.content,'html.parser')
     j = 1
-    print("iteration =",j)  
     #--------------------------------------------------------------------------------------------------------------------------------#
     #---------------------- 3.c.i -Create the article tag for the page number url and get the individual book url--------------------#
     #---------------------------------------------------------------------------------------------------------------------------------#
-    for artcl_tag in soup.find_all('article',class_ = 'product_pod'):
-            print("chk_url =",urljoin(product_pag_url,artcl_tag.h3.a.get('href')))     
+    for artcl_tag in soup.find_all('article',class_ = 'product_pod'):    
             book_page_url = urljoin(product_pag_url,artcl_tag.h3.a.get('href'))
-            print("Book Page Url =",book_page_url)
             bookpage = requests.get(book_page_url) 
-            if bookpage.status_code == 200:
-                print("able to open the page and read its contents")
             booksoup = BeautifulSoup(bookpage.content,'html.parser')
             #--------------------------------------------------------------------------------------------------------------------------#
             #--------- 3.c.ii - Create tag1 : to define category (subcategory in HTML script) & title of book from book page
@@ -154,12 +141,7 @@ while p_num <= total_pages_count:
             image_source = urljoin(book_page_url,img_src)
             rating_string = book_article_tag2.find('p').get('class',[])
             rating = rating_string[1]
-            print('Category=',category,'title=',title)
-            print(upc,price_exclu_tax,price_inclu_tax,quantity_available,review_count)
-            print(prod_descp)  
-            print(rating)
-            print(image_source)
-            print(img_src)
+            
             row_cnt = j
             col0 = all_count.append(row_cnt)
             col1 = comp_url.append(book_page_url)
@@ -178,9 +160,6 @@ while p_num <= total_pages_count:
 
 
 headers = ['page_number','Product_Page_Url','Universal_ Product_Code (UPC)','Book_Title','Price_Including_Tax','Price_Excluding_Tax','Quantity_Available','Product_Description','Category','Review_Rating','Image_Url']
-
-print("upc",upc_all)
-import csv
 
 with open(f'BookDetails_of_Category-{category_name}.csv','w',newline='') as csvfile:
 
